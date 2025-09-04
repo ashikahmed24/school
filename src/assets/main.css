@@ -1,1 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
+
 @import 'tailwindcss';
+
+@theme {
+  --color-primary: #00c951;
+  --color-secondary: #0fbb54;
+  --color-light: #fff6fa;
+  --color-border: #eeeeee;
+  --color-success: #0e9a5f;
+  --color-warning: #fdae1c;
+  --color-danger: #ff4040;
+  --color-info: #1c8bef;
+  --color-title: #11001c;
+  --color-subtitle: #190028;
+  --color-body: #323232;
+  --color-background: #e4dfed;
+  --color-black: #000;
+  --color-white: #fff;
+
+  --font-body: 'Noto Sans Bengali', sans-serif;
+  --font-sans: 'Noto Sans Bengali', sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+@layer base {
+  dialog {
+    margin: auto;
+  }
+}
+
+@layer components {
+  .scrollbar::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+  }
+
+  .scrollbar:hover::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar:hover::-webkit-scrollbar-track {
+    background: linear-gradient(0deg, rgb(220, 200, 246) 0%, rgb(216, 216, 255) 100%);
+  }
+
+  .scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+  .form__control {
+    @apply w-full rounded border border-border px-4 py-2 text-sm focus:outline-none focus:border-primary;
+  }
+}
