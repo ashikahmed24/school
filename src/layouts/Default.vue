@@ -3,9 +3,6 @@ import { ref } from 'vue'
 import Sidebar from './Sidebar.vue'
 import IconBar from '@/components/icons/IconBar.vue';
 
-// Sidebar toggle
-const openSidebar = ref(false);
-
 import {
     Listbox,
     ListboxButton,
@@ -25,13 +22,21 @@ const years = [
     { name: '2023-2024' },
     { name: '2022-2023' },
 ]
-const selectedPerson = ref(years[0])
+const selectedYear = ref(years[0]);
+
+const openSidebar = ref(false);
+
+const toggleSidebar = () => {
+    openSidebar.value = !openSidebar.value;
+}
+
 </script>
 
 <template>
     <header class="bg-white sticky top-0 z-40 border-b border-slate-200">
         <div class="flex items-center gap-4 px-4 py-2">
-            <button type="button" class="bg-gray-100 hover:bg-gray-200 rounded-full cursor-pointer p-2">
+            <button type="button" @click="toggleSidebar"
+                class="bg-gray-100 hover:bg-gray-200 rounded-full cursor-pointer p-2">
                 <IconBar class="size-5" />
             </button>
             <!-- Left: Logo -->
@@ -55,11 +60,11 @@ const selectedPerson = ref(years[0])
             <div class="flex items-center gap-4 px-4">
 
 
-                <Listbox v-model="selectedPerson">
+                <Listbox v-model="selectedYear">
                     <div class="relative mt-1">
                         <ListboxButton
                             class="relative w-full cursor-default rounded border border-border bg-white py-2 pl-3 pr-10 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                            <span class="block truncate">{{ selectedPerson.name }}</span>
+                            <span class="block truncate">Session: {{ selectedYear.name }}</span>
                             <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <IconChevronUpDown class="size-5" aria-hidden="true" />
                             </span>

@@ -1,6 +1,14 @@
 <script setup>
+import IconAcademic from "@/components/icons/IconAcademic.vue";
+import IconApplication from "@/components/icons/IconApplication.vue";
 import IconChevronRight from "@/components/icons/IconChevronRight.vue";
+import IconGroups from "@/components/icons/IconGroups.vue";
 import IconHome from "@/components/icons/IconHome.vue";
+import IconInfo from "@/components/icons/IconInfo.vue";
+import IconPersonCheck from "@/components/icons/IconPersonCheck.vue";
+import IconSubject from "@/components/icons/IconSubject.vue";
+import IconSupport from "@/components/icons/IconSupport.vue";
+import IconTeacher from "@/components/icons/IconTeacher.vue";
 import { ref } from "vue";
 
 const openMenus = ref({});
@@ -11,48 +19,45 @@ const toggleMenu = (menu) => {
 </script>
 
 <template>
-    <aside class="w-60 h-screen shadow-md overflow-y-auto scrollbar p-4">
-        <ul class="space-y-6 text-sm font-medium text-gray-700">
+    <aside
+        :class="['sidebar scrollbar fixed inset-y-0 left-0 w-60 bg-white shadow-md transform transition-transform duration-300 z-30', openSidebar ? 'translate-x-0' : '-translate-x-full', 'md:translate-x-0 md:static md:shadow-none']">
+        <ul class="menu">
 
             <!-- ================= MAIN ================= -->
-            <li>
-                <h6 class="text-xs font-semibold uppercase text-gray-400 px-2 mb-2">Main</h6>
-                <ul class="space-y-1">
+            <li class="menu__section">
+                <h6 class="menu__title">Main</h6>
+                <ul class="menu__list">
 
                     <!-- Dashboard -->
-                    <li>
-                        <button @click="toggleMenu('dashboard')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
+                    <li class="menu__item">
+                        <button @click="toggleMenu('dashboard')" class="menu__button">
+                            <span class="menu__button__label">
                                 <IconHome class="size-5" />
                                 <span>Dashboard</span>
                             </span>
                             <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.dashboard" class="ml-6 mt-1 space-y-1">
-                            <li><a href="index.html" class="block px-3 py-2 hover:bg-gray-100">Admin Dashboard</a></li>
-                            <li><a href="teacher-dashboard.html" class="block px-3 py-2 hover:bg-gray-100">Teacher
-                                    Dashboard</a></li>
-                            <li><a href="student-dashboard.html" class="block px-3 py-2 hover:bg-gray-100">Student
-                                    Dashboard</a></li>
-                            <li><a href="parent-dashboard.html" class="block px-3 py-2 hover:bg-gray-100">Parent
-                                    Dashboard</a></li>
+                        <ul v-show="openMenus.dashboard" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Admin Dashboard</a></li>
+                            <li><a href="#" class="menu__link">Teacher Dashboard</a></li>
+                            <li><a href="#" class="menu__link">Student Dashboard</a></li>
+                            <li><a href="#" class="menu__link">Parent Dashboard</a></li>
                         </ul>
                     </li>
 
                     <!-- Application -->
-                    <li>
-                        <button @click="toggleMenu('application')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2"><i
-                                    class="ti ti-layout-list"></i><span>Application</span></span>
-                            <span>›</span>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('application')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconApplication class="size-5" />
+                                <span>Application</span>
+                            </span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.application" class="ml-6 mt-1 space-y-1">
-                            <li><a href="chat.html" class="block px-3 py-2 hover:bg-gray-100">Chat</a></li>
-                            <li><a href="calendar.html" class="block px-3 py-2 hover:bg-gray-100">Calendar</a></li>
-                            <li><a href="email.html" class="block px-3 py-2 hover:bg-gray-100">Email</a></li>
-                            <li><a href="file-manager.html" class="block px-3 py-2 hover:bg-gray-100">File Manager</a>
+                        <ul v-show="openMenus.application" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Calendar</a></li>
+                            <li><a href="#" class="menu__link">Email</a></li>
+                            <li><a href="#" class="menu__link">File Manager</a>
                             </li>
                         </ul>
                     </li>
@@ -60,502 +65,436 @@ const toggleMenu = (menu) => {
             </li>
 
             <!-- ================= PEOPLES ================= -->
-            <li>
-                <h6 class="text-xs font-semibold uppercase text-gray-400 px-2 mb-2">Peoples</h6>
-                <ul class="space-y-1">
+            <li class="menu__section">
+                <h6 class="menu__title">Peoples</h6>
+                <ul class="menu__list">
                     <!-- Students -->
-                    <li>
-                        <button @click="toggleMenu('students')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2"><i
-                                    class="ti ti-school"></i><span>Students</span></span>
-                            <span>›</span>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('students')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconAcademic class="size-5" />
+                                <span>Students</span>
+                            </span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.students" class="ml-6 mt-1 space-y-1">
-                            <li><a href="student-grid.html" class="block px-3 py-2 hover:bg-gray-100">All Students</a>
-                            </li>
-                            <li><a href="students.html" class="block px-3 py-2 hover:bg-gray-100">Student List</a></li>
-                            <li><a href="student-details.html" class="block px-3 py-2 hover:bg-gray-100">Student
-                                    Details</a></li>
-                            <li><a href="student-promotion.html" class="block px-3 py-2 hover:bg-gray-100">Student
-                                    Promotion</a></li>
+                        <ul v-show="openMenus.students" class="menu__submenu">
+                            <li><a href="#" class="menu__link">All Students</a></li>
+                            <li><a href="#" class="menu__link">Student List</a></li>
+                            <li><a href="#" class="menu__link">Student Details</a></li>
+                            <li><a href="#" class="menu__link">Student Promotion</a></li>
                         </ul>
                     </li>
                     <!-- Parents -->
-                    <li>
-                        <button @click="toggleMenu('parents')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2"><i
-                                    class="ti ti-user-bolt"></i><span>Parents</span></span>
-                            <span>›</span>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('parents')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconPersonCheck class="size-5" />
+                                <span>Parents</span>
+                            </span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.parents" class="ml-6 mt-1 space-y-1">
-                            <li><a href="parent-grid.html" class="block px-3 py-2 hover:bg-gray-100">All Parents</a>
-                            </li>
-                            <li><a href="parents.html" class="block px-3 py-2 hover:bg-gray-100">Parent List</a></li>
+                        <ul v-show="openMenus.parents" class="menu__submenu">
+                            <li><a href="#" class="menu__link">All Parents</a></li>
+                            <li><a href="#" class="menu__link">Parent List</a></li>
                         </ul>
                     </li>
                     <!-- Guardians -->
-                    <li>
-                        <button @click="toggleMenu('guardians')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2"><i
-                                    class="ti ti-user-shield"></i><span>Guardians</span></span>
-                            <span>›</span>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('guardians')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconAcademic class="size-5" />
+                                <span>Guardians</span>
+                            </span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.guardians" class="ml-6 mt-1 space-y-1">
-                            <li><a href="guardian-grid.html" class="block px-3 py-2 hover:bg-gray-100">All Guardians</a>
-                            </li>
-                            <li><a href="guardians.html" class="block px-3 py-2 hover:bg-gray-100">Guardian List</a>
-                            </li>
+                        <ul v-show="openMenus.guardians" class="menu__submenu">
+                            <li><a href="#" class="menu__link">All Guardians</a></li>
+                            <li><a href="#" class="menu__link">Guardian List</a></li>
                         </ul>
                     </li>
                     <!-- Teachers -->
-                    <li>
-                        <button @click="toggleMenu('teachers')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2"><i
-                                    class="ti ti-users"></i><span>Teachers</span></span>
-                            <span>›</span>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('teachers')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconTeacher class="size-5" />
+                                <span>Teachers</span>
+                            </span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.teachers" class="ml-6 mt-1 space-y-1">
-                            <li><a href="teacher-grid.html" class="block px-3 py-2 hover:bg-gray-100">All Teachers</a>
-                            </li>
-                            <li><a href="teachers.html" class="block px-3 py-2 hover:bg-gray-100">Teacher List</a></li>
-                            <li><a href="teacher-details.html" class="block px-3 py-2 hover:bg-gray-100">Teacher
-                                    Details</a></li>
-                            <li><a href="routine-teachers.html" class="block px-3 py-2 hover:bg-gray-100">Routine</a>
-                            </li>
+                        <ul v-show="openMenus.teachers" class="menu__submenu">
+                            <li><a href="#" class="menu__link">All Teachers</a></li>
+                            <li><a href="#" class="menu__link">Teacher List</a></li>
+                            <li><a href="#" class="menu__link">Teacher Details</a></li>
+                            <li><a href="#" class="menu__link">Routine</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
 
             <!-- ================= ACADEMIC ================= -->
-            <li>
-                <h6 class="text-xs font-semibold uppercase text-gray-400 px-2 mb-2">
-                    Academic
-                </h6>
-                <ul class="space-y-1">
-
-                    <!-- Classes -->
-                    <li>
-                        <button @click="toggleMenu('classes')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-school-bell"></i>
+            <li class="menu__section">
+                <h6 class="menu__title">Academic</h6>
+                <ul class="menu__list">
+                    <li class="menu__item">
+                        <button @click="toggleMenu('classes')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconSubject class="size-5" />
                                 <span>Classes</span>
                             </span>
-                            <span>›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.classes" class="ml-6 mt-1 space-y-1">
-                            <li><a href="classes.html" class="block px-3 py-2 hover:bg-gray-100">All Classes</a></li>
-                            <li><a href="schedule-classes.html" class="block px-3 py-2 hover:bg-gray-100">Schedule</a>
+                        <ul v-show="openMenus.classes" class="menu__submenu">
+                            <li><a href="#" class="menu__link">All Classes</a></li>
+                            <li><a href="#" class="menu__link">Schedule</a>
                             </li>
                         </ul>
                     </li>
 
                     <!-- Class Room -->
-                    <li>
-                        <a href="class-room.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-building mr-2"></i> <span>Class Room</span>
+                    <li class="menu__item">
+                        <a href="class-room.html" class="menu__link no-before">
+                            <IconSubject class="size-5" />
+                            <span>Class Room</span>
                         </a>
                     </li>
 
                     <!-- Class Routine -->
-                    <li>
-                        <a href="class-routine.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-bell-school mr-2"></i> <span>Class Routine</span>
+                    <li class="menu__item">
+                        <a href="class-routine.html" class="menu__link no-before">
+                            <IconSubject class="size-5" />
+                            <span>Class Routine</span>
                         </a>
                     </li>
 
                     <!-- Section -->
-                    <li>
-                        <a href="class-section.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-square-rotated-forbid-2 mr-2"></i> <span>Section</span>
+                    <li class="menu__item">
+                        <a href="class-section.html" class="menu__link no-before">
+                            <IconSubject class="size-5" />
+                            <span>Section</span>
                         </a>
                     </li>
 
                     <!-- Subject -->
-                    <li>
-                        <a href="class-subject.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-book mr-2"></i> <span>Subject</span>
+                    <li class="menu__item">
+                        <a href="class-subject.html" class="menu__link no-before">
+                            <IconSubject class="size-5" />
+                            <span>Subject</span>
                         </a>
                     </li>
 
                     <!-- Syllabus -->
-                    <li>
-                        <a href="class-syllabus.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-book-upload mr-2"></i> <span>Syllabus</span>
+                    <li class="menu__item">
+                        <a href="class-syllabus.html" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Syllabus</span>
                         </a>
                     </li>
 
                     <!-- Time Table -->
-                    <li>
-                        <a href="class-time-table.html"
-                            class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-table mr-2"></i> <span>Time Table</span>
+                    <li class="menu__item">
+                        <a href="class-time-table.html" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Time Table</span>
                         </a>
                     </li>
 
                     <!-- Home Work -->
-                    <li>
-                        <a href="class-home-work.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-license mr-2"></i> <span>Home Work</span>
+                    <li class="menu__item">
+                        <a href="class-home-work.html" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Home Work</span>
                         </a>
                     </li>
 
                     <!-- Examinations -->
-                    <li>
-                        <button @click="toggleMenu('examinations')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-hexagonal-prism-plus"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('examinations')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Examinations</span>
                             </span>
-                            <span>›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.examinations" class="ml-6 mt-1 space-y-1">
-                            <li><a href="exam.html" class="block px-3 py-2 hover:bg-gray-100">Exam</a></li>
-                            <li><a href="exam-schedule.html" class="block px-3 py-2 hover:bg-gray-100">Exam Schedule</a>
-                            </li>
-                            <li><a href="grade.html" class="block px-3 py-2 hover:bg-gray-100">Grade</a></li>
-                            <li><a href="exam-attendance.html" class="block px-3 py-2 hover:bg-gray-100">Exam
-                                    Attendance</a></li>
-                            <li><a href="exam-results.html" class="block px-3 py-2 hover:bg-gray-100">Exam Results</a>
-                            </li>
+                        <ul v-show="openMenus.examinations" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Exam</a></li>
+                            <li><a href="#" class="menu__link">Exam Schedule</a></li>
+                            <li><a href="#" class="menu__link">Grade</a></li>
+                            <li><a href="#" class="menu__link">Exam Attendance</a></li>
+                            <li><a href="#" class="menu__link">Exam Results</a></li>
                         </ul>
                     </li>
 
                     <!-- Reasons -->
-                    <li>
-                        <a href="academic-reasons.html"
-                            class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-lifebuoy mr-2"></i> <span>Reasons</span>
+                    <li class="menu__item">
+                        <a href="academic-reasons.html" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Reasons</span>
                         </a>
                     </li>
                 </ul>
             </li>
 
             <!-- ================= MANAGEMENT ================= -->
-            <li>
-                <h6 class="text-xs font-semibold uppercase text-gray-400 px-2 mb-2">
-                    Management
-                </h6>
-                <ul class="space-y-1">
-
-                    <!-- Fees Collection -->
-                    <li>
-                        <button @click="toggleMenu('fees')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-report-money"></i>
-                                <span>Fees Collection</span>
-                            </span>
-                            <span>›</span>
-                        </button>
-                        <ul v-show="openMenus.fees" class="ml-6 mt-1 space-y-1">
-                            <li><a href="fees-group.html" class="block px-3 py-2 hover:bg-gray-100">Fees Group</a></li>
-                            <li><a href="fees-type.html" class="block px-3 py-2 hover:bg-gray-100">Fees Type</a></li>
-                            <li><a href="fees-master.html" class="block px-3 py-2 hover:bg-gray-100">Fees Master</a>
-                            </li>
-                            <li><a href="fees-assign.html" class="block px-3 py-2 hover:bg-gray-100">Fees Assign</a>
-                            </li>
-                            <li><a href="collect-fees.html" class="block px-3 py-2 hover:bg-gray-100">Collect Fees</a>
-                            </li>
-                        </ul>
-                    </li>
+            <li class="menu__section">
+                <h6 class="menu__title">Management</h6>
+                <ul class="menu__list">
 
                     <!-- Library -->
-                    <li>
-                        <button @click="toggleMenu('library')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-notebook"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('library')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Library</span>
                             </span>
-                            <span>›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.library" class="ml-6 mt-1 space-y-1">
-                            <li><a href="library-members.html" class="block px-3 py-2 hover:bg-gray-100">Library
-                                    Members</a></li>
-                            <li><a href="library-books.html" class="block px-3 py-2 hover:bg-gray-100">Books</a></li>
-                            <li><a href="library-issue-book.html" class="block px-3 py-2 hover:bg-gray-100">Issue
-                                    Book</a></li>
-                            <li><a href="library-return.html" class="block px-3 py-2 hover:bg-gray-100">Return</a></li>
+                        <ul v-show="openMenus.library" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Library Members</a></li>
+                            <li><a href="#" class="menu__link">Books</a></li>
+                            <li><a href="#" class="menu__link">Issue Book</a></li>
+                            <li><a href="#" class="menu__link">Return</a></li>
                         </ul>
                     </li>
 
                     <!-- Sports -->
-                    <li>
-                        <a href="sports.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-run mr-2"></i> <span>Sports</span>
+                    <li class="menu__item">
+                        <a href="sports.html" class="menu__link no-before">
+                            <IconApplication class="size-5" />
+                            <span>Sports</span>
                         </a>
                     </li>
 
                     <!-- Players -->
-                    <li>
-                        <a href="players.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-play-football mr-2"></i> <span>Players</span>
+                    <li class="menu__item">
+                        <a href="players.html" class="menu__link no-before">
+                            <IconApplication class="size-5" />
+                            <span>Players</span>
                         </a>
                     </li>
 
                     <!-- Hostel -->
-                    <li>
-                        <button @click="toggleMenu('hostel')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-building-fortress"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('hostel')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Hostel</span>
                             </span>
-                            <span>›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.hostel" class="ml-6 mt-1 space-y-1">
-                            <li><a href="hostel-list.html" class="block px-3 py-2 hover:bg-gray-100">Hostel List</a>
-                            </li>
-                            <li><a href="hostel-rooms.html" class="block px-3 py-2 hover:bg-gray-100">Hostel Rooms</a>
-                            </li>
-                            <li><a href="hostel-room-type.html" class="block px-3 py-2 hover:bg-gray-100">Room Type</a>
-                            </li>
+                        <ul v-show="openMenus.hostel" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Hostel List</a></li>
+                            <li><a href="#" class="menu__link">Hostel Rooms</a></li>
+                            <li><a href="#" class="menu__link">Room Type</a></li>
                         </ul>
                     </li>
 
                     <!-- Transport -->
-                    <li>
-                        <button @click="toggleMenu('transport')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-bus"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('transport')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Transport</span>
                             </span>
-                            <span>›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.transport" class="ml-6 mt-1 space-y-1">
-                            <li><a href="transport-routes.html" class="block px-3 py-2 hover:bg-gray-100">Routes</a>
-                            </li>
-                            <li><a href="transport-pickup-points.html" class="block px-3 py-2 hover:bg-gray-100">Pickup
-                                    Points</a></li>
-                            <li><a href="transport-vehicle-drivers.html"
-                                    class="block px-3 py-2 hover:bg-gray-100">Vehicle Drivers</a></li>
-                            <li><a href="transport-vehicle.html" class="block px-3 py-2 hover:bg-gray-100">Vehicle</a>
-                            </li>
-                            <li><a href="transport-assign-vehicle.html" class="block px-3 py-2 hover:bg-gray-100">Assign
-                                    Vehicle</a></li>
+                        <ul v-show="openMenus.transport" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Routes</a></li>
+                            <li><a href="#" class="menu__link">Pickup Points</a></li>
+                            <li><a href="#" class="menu__link">Vehicle Drivers</a></li>
+                            <li><a href="#" class="menu__link">Vehicle</a></li>
+                            <li><a href="#" class="menu__link">Assign Vehicle</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
 
             <!-- ================= HRM ================= -->
-            <li>
-                <h6 class="text-xs font-semibold uppercase text-gray-400 px-2 mb-2">
-                    HRM
-                </h6>
-                <ul class="space-y-1">
+            <li class="menu__section">
+                <h6 class="menu__title">HRM</h6>
+                <ul class="menu__list">
 
                     <!-- Staffs -->
-                    <li>
-                        <a href="staffs.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-users-group mr-2"></i> <span>Staffs</span>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Staffs</span>
                         </a>
                     </li>
 
                     <!-- Departments -->
-                    <li>
-                        <a href="departments.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-layout-distribute-horizontal mr-2"></i> <span>Departments</span>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Departments</span>
                         </a>
                     </li>
 
                     <!-- Designation -->
-                    <li>
-                        <a href="designation.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-user-exclamation mr-2"></i> <span>Designation</span>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Designation</span>
                         </a>
                     </li>
 
                     <!-- Attendance -->
-                    <li>
-                        <button @click="toggleMenu('attendance')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-calendar-share"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('attendance')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Attendance</span>
                             </span>
-                            <span>›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.attendance" class="ml-6 mt-1 space-y-1">
-                            <li><a href="student-attendance.html" class="block px-3 py-2 hover:bg-gray-100">Student
-                                    Attendance</a></li>
-                            <li><a href="teacher-attendance.html" class="block px-3 py-2 hover:bg-gray-100">Teacher
-                                    Attendance</a></li>
-                            <li><a href="staff-attendance.html" class="block px-3 py-2 hover:bg-gray-100">Staff
-                                    Attendance</a></li>
+                        <ul v-show="openMenus.attendance" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Student Attendance</a></li>
+                            <li><a href="#" class="menu__link">Teacher Attendance</a></li>
+                            <li><a href="#" class="menu__link">Staff Attendance</a></li>
                         </ul>
                     </li>
 
                     <!-- Leaves -->
-                    <li>
-                        <button @click="toggleMenu('leaves')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-calendar-stats"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('leaves')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Leaves</span>
                             </span>
-                            <span>›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.leaves" class="ml-6 mt-1 space-y-1">
-                            <li><a href="list-leaves.html" class="block px-3 py-2 hover:bg-gray-100">List of Leaves</a>
-                            </li>
-                            <li><a href="approve-request.html" class="block px-3 py-2 hover:bg-gray-100">Approve
-                                    Request</a></li>
+                        <ul v-show="openMenus.leaves" class="menu__submenu">
+                            <li><a href="#" class="menu__link">List of Leaves</a></li>
+                            <li><a href="#" class="menu__link">Approve Request</a></li>
                         </ul>
                     </li>
 
                     <!-- Holidays -->
-                    <li>
-                        <a href="holidays.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-briefcase mr-2"></i> <span>Holidays</span>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Holidays</span>
                         </a>
                     </li>
 
                     <!-- Payroll -->
-                    <li>
-                        <a href="payroll.html" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100">
-                            <i class="ti ti-moneybag mr-2"></i> <span>Payroll</span>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Payroll</span>
                         </a>
                     </li>
                 </ul>
             </li>
 
             <!-- ================= FINANCE ================= -->
-            <li>
-                <h6 class="text-xs font-semibold uppercase text-gray-400 px-2 mb-2">
-                    Finance &amp; Accounts
-                </h6>
-                <ul class="space-y-1">
+            <li class="menu__section">
+                <h6 class="menu__title">Finance &amp; Accounts</h6>
+                <ul class="menu__list">
+
+                    <!-- Fees Collection -->
+                    <li class="menu__item">
+                        <button @click="toggleMenu('fees')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
+                                <span>Fees Collection</span>
+                            </span>
+                            <IconChevronRight class="size-4" />
+                        </button>
+                        <ul v-show="openMenus.fees" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Fees Group</a></li>
+                            <li><a href="#" class="menu__link">Fees Type</a></li>
+                            <li><a href="#" class="menu__link">Fees Master</a></li>
+                            <li><a href="#" class="menu__link">Fees Assign</a></li>
+                            <li><a href="#" class="menu__link">Collect Fees</a></li>
+                            <li><a href="#" class="menu__link">Fees Report</a></li>
+                            <li><a href="#" class="menu__link">Due Fees</a></li>
+                        </ul>
+                    </li>
 
                     <!-- Accounts -->
-                    <li>
-                        <button @click="toggleMenu('accounts')"
-                            class="flex justify-between w-full px-3 py-2 rounded-md hover:bg-gray-100">
-                            <span class="flex items-center space-x-2">
-                                <i class="ti ti-swipe"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('accounts')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Accounts</span>
                             </span>
-                            <span>›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.accounts" class="ml-6 mt-1 space-y-1">
-                            <li><a href="expenses.html" class="block px-3 py-2 hover:bg-gray-100">Expenses</a></li>
-                            <li><a href="expenses-category.html" class="block px-3 py-2 hover:bg-gray-100">Expense
-                                    Category</a></li>
-                            <li><a href="accounts-income.html" class="block px-3 py-2 hover:bg-gray-100">Income</a></li>
-                            <li><a href="accounts-invoices.html" class="block px-3 py-2 hover:bg-gray-100">Invoices</a>
-                            </li>
-                            <li><a href="invoice.html" class="block px-3 py-2 hover:bg-gray-100">Invoice View</a></li>
-                            <li><a href="accounts-transactions.html"
-                                    class="block px-3 py-2 hover:bg-gray-100">Transactions</a></li>
+                        <ul v-show="openMenus.accounts" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Expenses</a></li>
+                            <li><a href="#" class="menu__link">Expense Category</a></li>
+                            <li><a href="#" class="menu__link">Income</a></li>
+                            <li><a href="#" class="menu__link">Invoices</a></li>
+                            <li><a href="#" class="menu__link">Invoice View</a></li>
+                            <li><a href="#" class="menu__link">Transactions</a></li>
                         </ul>
+                    </li>
+
+                    <!-- Balance Sheet -->
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Balance Sheet</span>
+                        </a>
+                    </li>
+
+                    <!-- Reports -->
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Reports</span>
+                        </a>
                     </li>
                 </ul>
             </li>
 
             <!-- ================= ANNOUNCEMENTS ================= -->
-            <li>
-                <h6 class="text-xs font-semibold uppercase text-gray-400 px-2 mb-2">Announcements</h6>
-                <ul class="space-y-1">
-                    <li><a href="notice.html" class="block px-3 py-2 hover:bg-gray-100">Notice</a></li>
-                    <li><a href="news.html" class="block px-3 py-2 hover:bg-gray-100">News</a></li>
-                    <li><a href="circular.html" class="block px-3 py-2 hover:bg-gray-100">Circular</a></li>
-                </ul>
-            </li>
-
-            <!-- ================= FINANCE & ACCOUNTS ================= -->
-            <li>
-                <h6 class="menu-header text-xs font-semibold uppercase text-gray-400 px-2 mb-2">Finance &amp; Accounts
-                </h6>
-                <ul class="menu-group flex flex-col gap-1">
-
-                    <!-- Accounts -->
+            <li class="menu__section">
+                <h6 class="menu__title">Announcements</h6>
+                <ul class="menu__item">
                     <li>
-                        <button @click="toggleMenu('accounts')"
-                            class="menu-button flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-gray-100 transition">
-                            <span class="menu-button-content flex items-center gap-2">
-                                <i class="ti ti-swipe"></i>
-                                <span>Accounts</span>
-                            </span>
-                            <span class="menu-arrow">›</span>
-                        </button>
-
-                        <ul v-show="openMenus.accounts" class="submenu ml-6 mt-1 flex flex-col gap-1">
-                            <li>
-                                <a href="expenses.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">
-                                    Expenses
-                                </a>
-                            </li>
-                            <li>
-                                <a href="expenses-category.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">
-                                    Expense Category
-                                </a>
-                            </li>
-                            <li>
-                                <a href="accounts-income.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">
-                                    Income
-                                </a>
-                            </li>
-                            <li>
-                                <a href="accounts-invoices.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">
-                                    Invoices
-                                </a>
-                            </li>
-                            <li>
-                                <a href="invoice.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">
-                                    Invoice View
-                                </a>
-                            </li>
-                            <li>
-                                <a href="accounts-transactions.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">
-                                    Transactions
-                                </a>
-                            </li>
-                        </ul>
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Notice</span>
+                        </a>
                     </li>
-
+                    <li>
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>News</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu__link no-before">
+                            <IconHome class="size-5" />
+                            <span>Circular</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
 
             <!-- ================= USER MANAGEMENT ================= -->
-            <li>
-                <h6 class="menu-header text-xs font-semibold uppercase text-gray-400 px-2 mb-2">User Management</h6>
-                <ul class="menu-group flex flex-col gap-1">
-
-                    <li>
-                        <a href="users.html"
-                            class="submenu-item flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition">
-                            <i class="ti ti-users-minus"></i>
+            <li class="menu__section">
+                <h6 class="menu__title">User Management</h6>
+                <ul class="menu__list">
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconGroups class="size-5" />
                             <span>Users</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="roles-permission.html"
-                            class="submenu-item flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition">
-                            <i class="ti ti-shield-plus"></i>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconApplication class="size-5" />
                             <span>Roles &amp; Permissions</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="delete-account.html"
-                            class="submenu-item flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition">
-                            <i class="ti ti-user-question"></i>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconApplication class="size-5" />
                             <span>Delete Account Request</span>
                         </a>
                     </li>
@@ -565,204 +504,141 @@ const toggleMenu = (menu) => {
 
 
             <!-- ================= SUPPORT ================= -->
-            <li>
-                <h6 class="menu-header text-xs font-semibold uppercase text-gray-400 px-2 mb-2">Support</h6>
-                <ul class="menu-group flex flex-col gap-1">
-
-                    <li>
-                        <a href="contact-messages.html"
-                            class="submenu-item flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition">
-                            <i class="ti ti-message"></i>
+            <li class="menu__section">
+                <h6 class="menu__title">Support</h6>
+                <ul class="menu__list">
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconApplication class="size-5" />
                             <span>Contact Messages</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="tickets.html"
-                            class="submenu-item flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 transition">
-                            <i class="ti ti-ticket"></i>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link no-before">
+                            <IconApplication class="size-5" />
                             <span>Tickets</span>
                         </a>
                     </li>
-
                 </ul>
             </li>
 
 
             <!-- ================= SETTINGS ================= -->
-            <li>
-                <h6 class="menu-header text-xs font-semibold uppercase text-gray-400 px-2 mb-2">Settings</h6>
-                <ul class="menu-group flex flex-col gap-1">
+            <li class="menu__section">
+                <h6 class="menu__title">Settings</h6>
+                <ul class="menu__list">
 
                     <!-- General Settings -->
-                    <li>
-                        <button @click="toggleMenu('generalSettings')"
-                            class="menu-button flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-gray-100 transition">
-                            <span class="menu-button-content flex items-center gap-2">
-                                <i class="ti ti-shield-cog"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('generalSettings')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>General Settings</span>
                             </span>
-                            <span class="menu-arrow">›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.generalSettings" class="submenu ml-6 mt-1 flex flex-col gap-1">
-                            <li><a href="profile-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Profile
-                                    Settings</a></li>
-                            <li><a href="security-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Security
-                                    Settings</a></li>
-                            <li><a href="notifications-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Notifications
-                                    Settings</a></li>
-                            <li><a href="connected-apps.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Connected
-                                    Apps</a></li>
+                        <ul v-show="openMenus.generalSettings" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Profile Settings</a></li>
+                            <li><a href="#" class="menu__link">Security Settings</a></li>
+                            <li><a href="#" class="menu__link">Notifications Settings</a></li>
+                            <li><a href="#" class="menu__link">Storage</a></li>
+                            <li><a href="#" class="menu__link">Ban IP Address</a></li>
                         </ul>
                     </li>
 
                     <!-- Website Settings -->
-                    <li>
-                        <button @click="toggleMenu('websiteSettings')"
-                            class="menu-button flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-gray-100 transition">
-                            <span class="menu-button-content flex items-center gap-2">
-                                <i class="ti ti-device-laptop"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('websiteSettings')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Website Settings</span>
                             </span>
-                            <span class="menu-arrow">›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.websiteSettings" class="submenu ml-6 mt-1 flex flex-col gap-1">
-                            <li><a href="company-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Company
-                                    Settings</a></li>
-                            <li><a href="localization.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Localization</a>
-                            </li>
-                            <li><a href="prefixes.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Prefixes</a>
-                            </li>
-                            <li><a href="preferences.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Preferences</a>
-                            </li>
-                            <li><a href="social-authentication.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Social
-                                    Authentication</a></li>
-                            <li><a href="language.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Language</a>
-                            </li>
+                        <ul v-show="openMenus.websiteSettings" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Academic Settings</a></li>
+                            <li><a href="#" class="menu__link">Localization</a></li>
+                            <li><a href="#" class="menu__link">Prefixes</a></li>
+                            <li><a href="#" class="menu__link">Preferences</a></li>
                         </ul>
                     </li>
 
-                    <!-- App Settings -->
-                    <li>
-                        <button @click="toggleMenu('appSettings')"
-                            class="menu-button flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-gray-100 transition">
-                            <span class="menu-button-content flex items-center gap-2">
-                                <i class="ti ti-apps"></i>
-                                <span>App Settings</span>
-                            </span>
-                            <span class="menu-arrow">›</span>
-                        </button>
-                        <ul v-show="openMenus.appSettings" class="submenu ml-6 mt-1 flex flex-col gap-1">
-                            <li><a href="invoice-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Invoice
-                                    Settings</a></li>
-                            <li><a href="custom-fields.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Custom
-                                    Fields</a></li>
-                        </ul>
-                    </li>
 
                     <!-- System Settings -->
-                    <li>
-                        <button @click="toggleMenu('systemSettings')"
-                            class="menu-button flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-gray-100 transition">
-                            <span class="menu-button-content flex items-center gap-2">
-                                <i class="ti ti-file-symlink"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('systemSettings')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>System Settings</span>
                             </span>
-                            <span class="menu-arrow">›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.systemSettings" class="submenu ml-6 mt-1 flex flex-col gap-1">
-                            <li><a href="email-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Email
-                                    Settings</a></li>
-                            <li><a href="email-templates.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Email
-                                    Templates</a></li>
-                            <li><a href="sms-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">SMS
-                                    Settings</a></li>
-                            <li><a href="otp-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">OTP</a>
-                            </li>
-                            <li><a href="gdpr-cookies.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">GDPR
-                                    Cookies</a></li>
+                        <ul v-show="openMenus.systemSettings" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Email Settings</a></li>
+                            <li><a href="#" class="menu__link">Email Templates</a></li>
+                            <li><a href="#" class="menu__link">SMS Settings</a></li>
+                            <li><a href="#" class="menu__link">OTP</a></li>
+                            <li><a href="#" class="menu__link">GDPR Cookies</a></li>
                         </ul>
                     </li>
 
                     <!-- Financial Settings -->
-                    <li>
-                        <button @click="toggleMenu('financialSettings')"
-                            class="menu-button flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-gray-100 transition">
-                            <span class="menu-button-content flex items-center gap-2">
-                                <i class="ti ti-zoom-money"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('financialSettings')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Financial Settings</span>
                             </span>
-                            <span class="menu-arrow">›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.financialSettings" class="submenu ml-6 mt-1 flex flex-col gap-1">
-                            <li><a href="payment-gateways.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Payment
-                                    Gateways</a></li>
-                            <li><a href="tax-rates.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Tax
-                                    Rates</a></li>
+                        <ul v-show="openMenus.financialSettings" class="menu__submenu">
+                            <li><a href="#" class="menu__link">Payment Gateways</a></li>
+                            <li><a href="#" class="menu__link">Tax Rates</a></li>
                         </ul>
                     </li>
 
                     <!-- Academic Settings -->
-                    <li>
-                        <button @click="toggleMenu('academicSettings')"
-                            class="menu-button flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-gray-100 transition">
-                            <span class="menu-button-content flex items-center gap-2">
-                                <i class="ti ti-calendar-repeat"></i>
+                    <li class="menu__item">
+                        <button @click="toggleMenu('academicSettings')" class="menu__button">
+                            <span class="menu__button__label">
+                                <IconHome class="size-5" />
                                 <span>Academic Settings</span>
                             </span>
-                            <span class="menu-arrow">›</span>
+                            <IconChevronRight class="size-4" />
                         </button>
-                        <ul v-show="openMenus.academicSettings" class="submenu ml-6 mt-1 flex flex-col gap-1">
-                            <li><a href="school-settings.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">School
-                                    Settings</a></li>
-                            <li><a href="religion.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Religion</a>
-                            </li>
+                        <ul v-show="openMenus.academicSettings" class="menu__submenu">
+                            <li><a href="#" class="menu__link">School Settings</a></li>
+                            <li><a href="#" class="menu__link">Religion</a></li>
                         </ul>
                     </li>
+                </ul>
+            </li>
 
-                    <!-- Other Settings -->
-                    <li>
-                        <button @click="toggleMenu('otherSettings')"
-                            class="menu-button flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-gray-100 transition">
-                            <span class="menu-button-content flex items-center gap-2">
-                                <i class="ti ti-flag-cog"></i>
-                                <span>Other Settings</span>
-                            </span>
-                            <span class="menu-arrow">›</span>
-                        </button>
-                        <ul v-show="openMenus.otherSettings" class="submenu ml-6 mt-1 flex flex-col gap-1">
-                            <li><a href="storage.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Storage</a>
-                            </li>
-                            <li><a href="ban-ip-address.html"
-                                    class="submenu-item block px-3 py-2 rounded hover:bg-gray-100 transition">Ban IP
-                                    Address</a></li>
-                        </ul>
+            <!-- ================= Help Center ================= -->
+            <li class="menu__section">
+                <h6 class="menu__title">Help Center</h6>
+                <ul class="menu__list">
+
+                    <!-- Documentation -->
+                    <li class="menu__item">
+                        <a href="documentation.html" class="menu__link no-before">
+                            <IconInfo class="size-5" />
+                            <span>Documentation</span>
+                        </a>
+                    </li>
+
+                    <!-- Contact Support -->
+                    <li class="menu__item">
+                        <a href="support.html" class="menu__link no-before">
+                            <IconSupport class="size-5" />
+                            <span>Contact Support</span>
+                        </a>
                     </li>
 
                 </ul>
             </li>
+
 
         </ul>
     </aside>
